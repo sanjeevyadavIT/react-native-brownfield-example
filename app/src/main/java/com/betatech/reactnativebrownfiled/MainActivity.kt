@@ -5,8 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import com.betatech.profile.ProfileFragment
 import com.betatech.react.ReactFragment
 import com.betatech.reactnativebrownfiled.feature.HomeFragment
+import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler
+import dagger.hilt.android.AndroidEntryPoint
 
-class MainActivity : AppCompatActivity() {
+@AndroidEntryPoint
+class MainActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -29,5 +32,9 @@ class MainActivity : AppCompatActivity() {
             .replace(R.id.fragmentContainer, fragment)
             .addToBackStack(null)
             .commit()
+    }
+
+    override fun invokeDefaultOnBackPressed() {
+        super.onBackPressed()
     }
 }

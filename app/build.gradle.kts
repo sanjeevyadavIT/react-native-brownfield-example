@@ -2,7 +2,59 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    id("com.facebook.react")
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
+
+/*
+ * This is the configuration block to customize your React Native Android app.
+ * By default you don't need to apply any configuration, just uncomment the lines you need.
+ */
+configure<com.facebook.react.ReactExtension> {
+    /* Folders */
+    //   The root of your project, i.e. where "package.json" lives. Default is '..'
+    root.set(file("../reactNative/"))
+    //   The folder where the react-native NPM package is. Default is ../node_modules/react-native
+    reactNativeDir.set(file("../reactNative/node_modules/react-native"))
+    //   The folder where the react-native Codegen package is. Default is ../node_modules/@react-native/codegen
+    codegenDir.set(file("../reactNative/node_modules/@react-native/codegen"))
+    //   The cli.js file which is the React Native CLI entrypoint. Default is ../node_modules/react-native/cli.js
+    cliFile.set(file("../reactNative/node_modules/react-native/cli.js"))
+    /* Variants */
+    //   The list of variants to that are debuggable. For those we're going to
+    //   skip the bundling of the JS bundle and the assets. By default is just 'debug'.
+    //   If you add flavors like lite, prod, etc. you'll have to list your debuggableVariants.
+    // debuggableVariants = ["liteDebug", "prodDebug"]
+    /* Bundling */
+    //   A list containing the node command and its flags. Default is just 'node'.
+    // nodeExecutableAndArgs = ["node"]
+    //
+    //   The command to run when bundling. By default is 'bundle'
+    // bundleCommand = "ram-bundle"
+    //
+    //   The path to the CLI configuration file. Default is empty.
+    // bundleConfig = file(../rn-cli.config.js)
+    //
+    //   The name of the generated asset file containing your JS bundle
+    bundleAssetName.set("index.android.bundle")
+    //
+    //   The entry file for bundle generation. Default is 'index.android.js' or 'index.js'
+    entryFile.set(file("../reactNative/index.android.js"))
+    //
+    //   A list of extra flags to pass to the 'bundle' commands.
+    //   See https://github.com/react-native-community/cli/blob/main/docs/commands.md#bundle
+    // extraPackagerArgs = []
+    /* Hermes Commands */
+    //   The hermes compiler command to run. By default it is 'hermesc'
+    hermesCommand.set("../reactNative/node_modules/react-native/sdks/hermesc/%OS-BIN%/hermesc")
+    //
+    //   The list of flags to pass to the Hermes compiler. By default is "-O", "-output-source-map"
+    // hermesFlags = ["-O", "-output-source-map"]
+    autolinkLibrariesWithApp()
+}
+
+val newArchEnabled: String by project
 
 android {
     namespace = "com.betatech.reactnativebrownfiled"
@@ -16,6 +68,8 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("Boolean", "NEW_ARCHITECTURE_ENABLED", newArchEnabled)
     }
 
     buildTypes {
@@ -28,11 +82,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
@@ -55,6 +109,13 @@ dependencies {
     implementation(project(":feature:profile"))
     implementation(project(":feature:react"))
 
+    // react
+    implementation(libs.react.library)
+
+    // hilt
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -62,4 +123,8 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+}
+
+kapt {
+    correctErrorTypes = true
 }
