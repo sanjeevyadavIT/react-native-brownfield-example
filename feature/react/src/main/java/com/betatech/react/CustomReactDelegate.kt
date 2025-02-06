@@ -13,8 +13,7 @@ class CustomReactDelegate(
     launchOptions: Bundle?
 ): ReactDelegate(
     activity,
-//    getDefaultReactHost(activity!!.applicationContext, reactNativeHost),
-    reactNativeHost,
+    getDefaultReactHost(activity!!.applicationContext, reactNativeHost),
     appKey,
     launchOptions
 ) {

@@ -38,7 +38,7 @@ class ReactNativeModule {
                 get() = true
 
             override val isNewArchEnabled: Boolean
-                get() = false
+                get() = true
 
         }
     }
