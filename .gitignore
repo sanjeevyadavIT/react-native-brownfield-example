@@ -13,3 +13,5 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+reactNative/node_modules/*
