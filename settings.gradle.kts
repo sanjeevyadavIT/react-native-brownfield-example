@@ -22,3 +22,4 @@ dependencyResolutionManagement {
 rootProject.name = "React Native Brownfiled"
 include(":app")
 include(":feature:profile")
+include(":feature:react")

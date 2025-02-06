@@ -53,6 +53,7 @@ dependencies {
 
     // custom features
     implementation(project(":feature:profile"))
+    implementation(project(":feature:react"))
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

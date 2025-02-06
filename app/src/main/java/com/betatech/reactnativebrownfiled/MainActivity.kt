@@ -3,6 +3,7 @@ package com.betatech.reactnativebrownfiled
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.betatech.profile.ProfileFragment
+import com.betatech.react.ReactFragment
 import com.betatech.reactnativebrownfiled.feature.HomeFragment
 
 class MainActivity : AppCompatActivity() {
@@ -21,7 +22,7 @@ class MainActivity : AppCompatActivity() {
     fun replaceFragment(id: Int) {
         val fragment = when(id) {
             1 -> ProfileFragment()
-            2 -> HomeFragment()
+            2 -> ReactFragment()
             else -> HomeFragment()
         }
         supportFragmentManager.beginTransaction()
