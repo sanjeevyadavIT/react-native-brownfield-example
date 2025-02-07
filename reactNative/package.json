@@ -26,7 +26,8 @@
     "@react-native/eslint-config": "0.76.7",
     "@react-native/metro-config": "0.76.7",
     "@react-native/typescript-config": "0.76.7",
-    "@types/react": "^18.2.6",
+    "@types/react": "^18.3.18",
+    "@types/react-native": "^0.73.0",
     "@types/react-test-renderer": "^18.0.0",
     "babel-jest": "^29.6.3",
     "eslint": "^8.19.0",
@@ -34,9 +35,17 @@
     "patch-package": "^8.0.0",
     "prettier": "2.8.8",
     "react-test-renderer": "18.3.1",
-    "typescript": "5.0.4"
+    "typescript": "^5.0.4"
   },
   "engines": {
     "node": ">=18"
+  },
+  "codegenConfig": {
+    "name": "NativeLocalStorageSpec",
+    "type": "modules",
+    "jsSrcsDir": "specs",
+    "android": {
+      "javaPackageName": "com.nativelocalstorage"
+    }
   }
 }
