@@ -5,6 +5,13 @@ plugins {
     id("com.google.dagger.hilt.android")
 }
 
+kotlin {
+    sourceSets.named("main") {
+        kotlin.srcDir(layout.buildDirectory.dir("generated/source/codegen/java"))
+        kotlin.srcDir(layout.buildDirectory.dir("generated/autolinking/src/main/java"))
+    }
+}
+
 android {
     namespace = "com.betatech.react"
     compileSdk = 35
@@ -51,4 +58,10 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+}
+
+afterEvaluate {
+    tasks.findByName("kaptGenerateStubsDebugKotlin")?.let { task ->
+        task.dependsOn(":app:generateCodegenArtifactsFromSchema")
+    }
 }

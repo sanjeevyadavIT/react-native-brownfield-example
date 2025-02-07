@@ -2,8 +2,10 @@ package com.betatech.react.di
 
 import android.app.Application
 import com.betatech.react.BuildConfig
+import com.betatech.react.module.NativeLocalStoragePackage
 import com.facebook.hermes.reactexecutor.HermesExecutorFactory
 import com.facebook.react.ReactNativeHost
+import com.facebook.react.ReactPackage
 import com.facebook.react.defaults.DefaultReactNativeHost
 import com.facebook.react.shell.MainReactPackage
 import dagger.Module
@@ -18,13 +20,14 @@ class ReactNativeModule {
 
     @Provides
     @Singleton
-    internal fun getReactNativeHost(
+    fun getReactNativeHost(
         application: Application,
     ): ReactNativeHost {
         return object: DefaultReactNativeHost(application) {
-            override fun getPackages(): List<MainReactPackage> {
+            override fun getPackages(): List<ReactPackage> {
                 return listOf(
-                    MainReactPackage()
+                    MainReactPackage(),
+                    NativeLocalStoragePackage()
                 )
             }
 
