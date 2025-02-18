@@ -18,7 +18,10 @@ plugins {
 }
 
 extensions.configure<com.facebook.react.ReactSettingsExtension> {
-    autolinkLibrariesFromCommand(workingDirectory = file("./reactNative"))
+    autolinkLibrariesFromCommand(
+        workingDirectory = file("./reactNative"),
+        lockFiles = files("./reactNative/yarn.lock")
+    )
 }
 
 rootProject.name = "React Native Brownfiled"
