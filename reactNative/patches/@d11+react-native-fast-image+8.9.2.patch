@@ -1,0 +1,13 @@
+diff --git a/node_modules/@d11/react-native-fast-image/android/build.gradle b/node_modules/@d11/react-native-fast-image/android/build.gradle
+index e166ccf..815eafa 100644
+--- a/node_modules/@d11/react-native-fast-image/android/build.gradle
++++ b/node_modules/@d11/react-native-fast-image/android/build.gradle
+@@ -32,7 +32,7 @@ apply plugin: 'com.android.library'
+ 
+ android {
+     namespace "com.dylanvann.fastimage"
+-    compileSdkVersion safeExtGet('compileSdkVersion', 28)
++    compileSdkVersion safeExtGet('compileSdkVersion', 30)
+     buildToolsVersion safeExtGet('buildToolsVersion', '28.0.3')
+     defaultConfig {
+         minSdkVersion safeExtGet('minSdkVersion', 16)
