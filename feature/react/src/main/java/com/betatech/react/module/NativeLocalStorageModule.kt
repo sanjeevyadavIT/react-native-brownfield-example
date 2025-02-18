@@ -2,7 +2,7 @@ package com.betatech.react.module
 
 import android.util.Log
 import com.facebook.react.bridge.ReactApplicationContext
-import com.nativelocalstorage.NativeLocalStorageSpec
+import com.mybrownfieldmodule.NativeLocalStorageSpec
 
 class NativeLocalStorageModule(reactContext: ReactApplicationContext) : NativeLocalStorageSpec(reactContext) {
     override fun getName() = NAME

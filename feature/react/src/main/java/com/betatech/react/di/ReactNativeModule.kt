@@ -13,6 +13,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
+import com.facebook.react.PackageList
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -25,10 +26,9 @@ class ReactNativeModule {
     ): ReactNativeHost {
         return object: DefaultReactNativeHost(application) {
             override fun getPackages(): List<ReactPackage> {
-                return listOf(
-                    MainReactPackage(),
-                    NativeLocalStoragePackage()
-                )
+                return PackageList(application).packages.apply {
+                    add(NativeLocalStoragePackage())
+                }
             }
 
             override fun getUseDeveloperSupport(): Boolean = BuildConfig.DEBUG

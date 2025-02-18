@@ -16,6 +16,13 @@ android {
     namespace = "com.betatech.react"
     compileSdk = 35
 
+    sourceSets {
+        getByName("main") {
+            java.srcDir("${rootProject.projectDir}/app/build/generated/source/codegen/java")
+            java.srcDir("${rootProject.projectDir}/app/build/generated/autolinking/src/main/java")
+        }
+    }
+
     defaultConfig {
         minSdk = 24
 
@@ -58,6 +65,17 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+    mustRunAfter(":app:generateAutolinkingPackageList")
+    mustRunAfter(":app:generateCodegenArtifactsFromSchema")
+    dependsOn(":app:generateAutolinkingPackageList")
+    dependsOn(":app:generateCodegenArtifactsFromSchema")
+}
+
+tasks.withType<JavaCompile>().configureEach {
+    dependsOn(":app:generateCodegenArtifactsFromSchema")
 }
 
 afterEvaluate {
