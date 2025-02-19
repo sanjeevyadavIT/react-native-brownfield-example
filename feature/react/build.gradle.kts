@@ -58,6 +58,9 @@ dependencies {
     implementation(libs.react.library)
     implementation(libs.hermes.android)
 
+    // react-native-fast-image
+    implementation(project(path = ":@d11_react-native-fast-image"))
+
     // hilt
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
