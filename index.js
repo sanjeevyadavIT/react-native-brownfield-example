@@ -36,7 +36,7 @@ CodePush.getUpdateMetadata = async (updateState) => {
 CodePush.SyncStatus = SyncStatus;
 CodePush.CheckFrequency = {};
 CodePush.InstallMode = {};
-UpdateState.UpdateState = {};
+CodePush.UpdateState = {};
 
 export default CodePush;
 export const { sync, checkForUpdate, installUpdate } = CodePush;
