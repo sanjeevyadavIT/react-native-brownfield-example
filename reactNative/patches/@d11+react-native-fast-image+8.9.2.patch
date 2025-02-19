@@ -1,5 +1,5 @@
 diff --git a/node_modules/@d11/react-native-fast-image/android/build.gradle b/node_modules/@d11/react-native-fast-image/android/build.gradle
-index e166ccf..815eafa 100644
+index e166ccf..c73cd8b 100644
 --- a/node_modules/@d11/react-native-fast-image/android/build.gradle
 +++ b/node_modules/@d11/react-native-fast-image/android/build.gradle
 @@ -32,7 +32,7 @@ apply plugin: 'com.android.library'
@@ -11,3 +11,11 @@ index e166ccf..815eafa 100644
      buildToolsVersion safeExtGet('buildToolsVersion', '28.0.3')
      defaultConfig {
          minSdkVersion safeExtGet('minSdkVersion', 16)
+@@ -91,3 +91,7 @@ dependencies {
+     implementation "com.github.zjupure:webpdecoder:2.6.${glideVersion}"
+     annotationProcessor "com.github.bumptech.glide:compiler:${glideVersion}"
+ }
++
++tasks.named("generateCodegenArtifactsFromSchema") {
++    dependsOn(":@d11_react-native-fast-image:generateCodegenSchemaFromJavaScript")
++}
