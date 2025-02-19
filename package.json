@@ -1,7 +1,8 @@
 {
-    "name": "react-native-code-push",
+    "name": "react-native-sound",
     "version": "1.0.0",
     "main": "index.js",
+    "types": "index.d.ts",
     "peerDependencies": {
       "react-native": "*"
     }

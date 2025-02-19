@@ -1,42 +1,71 @@
-import React from "react";
+class Sound {
+  constructor(filename, basePath, callback) {
+    // Simulate async loading with a timeout
+    setTimeout(() => {
+      callback(null); // No error
+    }, 100);
+  }
 
-const SyncStatus = {
-  CHECKING_FOR_UPDATE: "CHECKING_FOR_UPDATE",
-  DOWNLOADING_PACKAGE: "DOWNLOADING_PACKAGE",
-  INSTALLING_UPDATE: "INSTALLING_UPDATE",
-  UP_TO_DATE: "UP_TO_DATE",
-  UPDATE_INSTALLED: "UPDATE_INSTALLED",
-  UNKNOWN_ERROR: "UNKNOWN_ERROR",
-};
+  isLoaded(){return false}
 
-const CodePush = (config) => (AppComponent) => {
-  return function WrappedComponent(props) {
-    return <AppComponent {...props} />;
-  };
-};
+  play(onEnd) {
+    // Simulate playing sound
+    if (onEnd) {
+      setTimeout(() => {
+        onEnd(false); // No error
+      }, 1000); // Simulate 1 second playback
+    }
+  }
 
-CodePush.sync = () => {
-  console.log("CodePush.sync() called");
-};
+  pause(){}
 
-CodePush.checkForUpdate = () => {
-  console.log("CodePush.checkForUpdate() called");
-  return Promise.resolve(null);
-};
+  stop() {
+    // Simulate stopping sound
+  }
 
-CodePush.installUpdate = () => {
-  console.log("CodePush.installUpdate() called");
-};
+  reset(){}
 
-CodePush.getUpdateMetadata = async (updateState) => {
-  console.log(`CodePush.getUpdateMetadata(${updateState}) called`);
-  return Promise.resolve(null);
-};
+  release() {
+    // Simulate releasing sound resources
+  }
 
-CodePush.SyncStatus = SyncStatus;
-CodePush.CheckFrequency = {};
-CodePush.InstallMode = {};
-UpdateState.UpdateState = {};
+  setPan(){}
 
-export default CodePush;
-export const { sync, checkForUpdate, installUpdate } = CodePush;
+  getPan(){}
+
+  getNumberOfChannels(){}
+
+  getDuration(){return 0}
+
+  setCurrentTime(){}
+
+  getCurrentTime(){}
+
+  setVolume(){}
+
+  getVolume(){}
+
+  getNumberOfLoops(){}
+
+  setNumberOfLoops(){}
+
+  setCategory(){}
+
+  getSpeed(){}
+
+  setSpeed(){}
+
+  getPitch(){}
+
+  setPitch(){}
+
+  enableInSilenceMode(){}
+
+  setSpeakerphoneOn(){}
+
+  isPlaying(){return false}
+}
+
+Sound.MAIN_BUNDLE = 'main_bundle';
+
+export default Sound;
