@@ -1,8 +1,7 @@
 {
-    "name": "react-native-sound",
+    "name": "react-native-video-controls",
     "version": "1.0.0",
     "main": "index.js",
-    "types": "index.d.ts",
     "peerDependencies": {
       "react-native": "*"
     }
