@@ -1,0 +1,15 @@
+diff --git a/node_modules/@react-native/gradle-plugin/react-native-gradle-plugin/src/main/kotlin/com/facebook/react/tasks/GeneratePackageListTask.kt b/node_modules/@react-native/gradle-plugin/react-native-gradle-plugin/src/main/kotlin/com/facebook/react/tasks/GeneratePackageListTask.kt
+index 36cc66c..849ddec 100644
+--- a/node_modules/@react-native/gradle-plugin/react-native-gradle-plugin/src/main/kotlin/com/facebook/react/tasks/GeneratePackageListTask.kt
++++ b/node_modules/@react-native/gradle-plugin/react-native-gradle-plugin/src/main/kotlin/com/facebook/react/tasks/GeneratePackageListTask.kt
+@@ -91,7 +91,9 @@ abstract class GeneratePackageListTask : DefaultTask() {
+   internal fun filterAndroidPackages(
+       model: ModelAutolinkingConfigJson?
+   ): Map<String, ModelAutolinkingDependenciesPlatformAndroidJson> {
+-    val packages = model?.dependencies?.values ?: emptyList()
++    val packages = model?.dependencies?.filter{ (_, dependency) ->
++      dependency.name != "react-native-code-push"
++    }?.values ?: emptyList()
+     return packages
+         .filter { it.platforms?.android != null }
+         // The pure C++ dependencies won't have a .java/.kt file to import

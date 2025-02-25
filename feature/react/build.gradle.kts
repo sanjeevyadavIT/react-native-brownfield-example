@@ -5,6 +5,8 @@ plugins {
     id("com.google.dagger.hilt.android")
 }
 
+val REACT_CODEPUSH_PRODUCTION_DEPLOYMENT_KEY: String by project
+
 kotlin {
     sourceSets.named("main") {
         kotlin.srcDir(layout.buildDirectory.dir("generated/source/codegen/java"))
@@ -25,6 +27,8 @@ android {
 
     defaultConfig {
         minSdk = 24
+
+        buildConfigField("String", "CodePushDeploymentKey", REACT_CODEPUSH_PRODUCTION_DEPLOYMENT_KEY)
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -57,6 +61,8 @@ dependencies {
     // react
     implementation(libs.react.library)
     implementation(libs.hermes.android)
+
+    implementation(project(":react-native-code-push"))
 
     // hilt
     implementation(libs.hilt.android)
