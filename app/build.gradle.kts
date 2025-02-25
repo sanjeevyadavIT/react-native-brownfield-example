@@ -7,6 +7,8 @@ plugins {
     id("com.google.dagger.hilt.android")
 }
 
+apply(from = "../reactNative/node_modules/react-native-code-push/android/codepush.gradle")
+
 /*
  * This is the configuration block to customize your React Native Android app.
  * By default you don't need to apply any configuration, just uncomment the lines you need.

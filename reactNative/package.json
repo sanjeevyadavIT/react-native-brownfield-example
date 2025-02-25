@@ -4,17 +4,21 @@
   "private": true,
   "scripts": {
     "bundle": "react-native bundle --platform android --dev false --entry-file index.android.js --bundle-output ../app/src/main/assets/index.android.bundle --assets-dest ../app/src/main/res",
+    "codepush": "appcenter codepush release-react -a $PROJECT -d $ENV -t $VERSION_CODE -g ../feature/react/build.gradle.kts",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "lint": "eslint .",
     "start": "react-native start",
-    "test": "jest"
+    "test": "jest",
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "react": "18.3.1",
-    "react-native": "0.76.7"
+    "react-native": "0.76.7",
+    "react-native-code-push": "https://github.com/CodePushNext/react-native-code-push.git#master"
   },
   "devDependencies": {
+    "patch-package": "^8.0.0",
     "@babel/core": "^7.25.2",
     "@babel/preset-env": "^7.25.3",
     "@babel/runtime": "^7.25.0",

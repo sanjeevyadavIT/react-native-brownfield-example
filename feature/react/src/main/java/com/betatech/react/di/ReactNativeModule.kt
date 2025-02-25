@@ -7,6 +7,7 @@ import com.facebook.hermes.reactexecutor.HermesExecutorFactory
 import com.facebook.react.ReactNativeHost
 import com.facebook.react.ReactPackage
 import com.facebook.react.defaults.DefaultReactNativeHost
+import com.microsoft.codepush.react.CodePush
 import com.facebook.react.shell.MainReactPackage
 import dagger.Module
 import dagger.Provides
@@ -26,14 +27,20 @@ class ReactNativeModule {
     ): ReactNativeHost {
         return object: DefaultReactNativeHost(application) {
             override fun getPackages(): List<ReactPackage> {
+                val codepush = CodePush.getInstance(
+                    BuildConfig.CodePushDeploymentKey,
+                    application,
+                    BuildConfig.DEBUG
+                )
                 return PackageList(application).packages.apply {
+                    add(codepush)
                     add(NativeLocalStoragePackage())
                 }
             }
 
             override fun getUseDeveloperSupport(): Boolean = BuildConfig.DEBUG
 
-            override fun getJSMainModuleName(): String = "index"
+            override fun getJSBundleFile(): String = CodePush.getJSBundleFile()
 
             override fun getJavaScriptExecutorFactory() = HermesExecutorFactory()
 
