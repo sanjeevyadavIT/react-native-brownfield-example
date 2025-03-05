@@ -5,12 +5,12 @@ plugins {
     id("com.google.dagger.hilt.android")
 }
 
-kotlin {
-    sourceSets.named("main") {
-        kotlin.srcDir(layout.buildDirectory.dir("generated/source/codegen/java"))
-        kotlin.srcDir(layout.buildDirectory.dir("generated/autolinking/src/main/java"))
-    }
-}
+// kotlin {
+//     sourceSets.named("main") {
+//         kotlin.srcDir(layout.buildDirectory.dir("generated/source/codegen/java"))
+//         kotlin.srcDir(layout.buildDirectory.dir("generated/autolinking/src/main/java"))
+//     }
+// }
 
 android {
     namespace = "com.betatech.react"
@@ -32,7 +32,7 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"

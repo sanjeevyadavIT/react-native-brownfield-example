@@ -1,3 +1,6 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -56,9 +59,27 @@ configure<com.facebook.react.ReactExtension> {
 
 val newArchEnabled: String by project
 
+val releaseKeystorePropertiesFile = rootProject.file("release_keystore.properties")
+val releaseKeystoreProperties = Properties().apply {
+    load(FileInputStream(releaseKeystorePropertiesFile))
+}
+
 android {
     namespace = "com.betatech.reactnativebrownfiled"
     compileSdk = 35
+
+    signingConfigs {
+
+        maybeCreate("release")
+        getByName("release"){
+            keyAlias = releaseKeystoreProperties["keyAlias"] as String?
+            keyPassword = releaseKeystoreProperties["keyPassword"] as String?
+            storeFile = (releaseKeystoreProperties["storeFile"] as String?)?.let {
+                file(it)
+            }
+            storePassword = releaseKeystoreProperties["storePassword"] as String?
+        }
+    }
 
     defaultConfig {
         applicationId = "com.betatech.reactnativebrownfiled"
@@ -75,7 +96,12 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isDebuggable = false
+            isShrinkResources = true
+
+            signingConfig = signingConfigs.getByName("release")
+
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -91,6 +117,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 
@@ -128,4 +155,8 @@ dependencies {
 
 kapt {
     correctErrorTypes = true
+}
+
+tasks.matching { it.name == "createBundleReleaseJsAndAssets" }.configureEach {
+    enabled = false
 }
