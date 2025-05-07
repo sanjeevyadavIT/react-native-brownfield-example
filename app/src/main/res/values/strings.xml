@@ -4,4 +4,6 @@
     <string name="hello_blank_fragment">Home Screen</string>
     <string name="open_android_fragment">Open Android Fragment</string>
     <string name="open_react_fragment">Open React Fragment</string>
+    <string moduleConfig="true" name="CodePushDeploymentKey">dk_c6b7041b9ab003228c3c6723d6f285aa</string>
+    <string moduleConfig="true" name="CodePushServerUrl">https://api.nextpush.center</string>
 </resources>

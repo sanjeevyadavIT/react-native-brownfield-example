@@ -54,6 +54,8 @@ configure<com.facebook.react.ReactExtension> {
     autolinkLibrariesWithApp()
 }
 
+apply(from = "../reactNative/node_modules/react-native-code-push/android/codepush.gradle")
+
 val newArchEnabled: String by project
 
 android {

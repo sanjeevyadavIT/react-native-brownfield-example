@@ -4,8 +4,10 @@ import android.app.Application
 import com.betatech.react.BuildConfig
 import com.facebook.hermes.reactexecutor.HermesExecutorFactory
 import com.facebook.react.ReactNativeHost
+import com.facebook.react.ReactPackage
 import com.facebook.react.defaults.DefaultReactNativeHost
 import com.facebook.react.shell.MainReactPackage
+import com.microsoft.codepush.react.CodePush
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,15 +24,20 @@ class ReactNativeModule {
         application: Application,
     ): ReactNativeHost {
         return object: DefaultReactNativeHost(application) {
-            override fun getPackages(): List<MainReactPackage> {
+            override fun getPackages(): List<ReactPackage> {
                 return listOf(
-                    MainReactPackage()
+                    MainReactPackage(),
+                    CodePush(
+                        "dk_c6b7041b9ab003228c3c6723d6f285aa",
+                        application,
+                        BuildConfig.DEBUG
+                    )
                 )
             }
 
             override fun getUseDeveloperSupport(): Boolean = BuildConfig.DEBUG
 
-            override fun getJSMainModuleName(): String = "index"
+            override fun getJSBundleFile(): String = CodePush.getJSBundleFile() 
 
             override fun getJavaScriptExecutorFactory() = HermesExecutorFactory()
 

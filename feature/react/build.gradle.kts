@@ -44,6 +44,8 @@ dependencies {
     implementation(libs.react.library)
     implementation(libs.hermes.android)
 
+    implementation(project(":react-native-code-push"))
+
     // hilt
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)

@@ -23,6 +23,8 @@ extensions.configure<com.facebook.react.ReactSettingsExtension> {
 
 rootProject.name = "React Native Brownfiled"
 include(":app")
+include(":react-native-code-push")
 include(":feature:profile")
 include(":feature:react")
 includeBuild("reactNative/node_modules/@react-native/gradle-plugin")
+project(":react-native-code-push").projectDir = File(rootProject.projectDir, "reactNative/node_modules/react-native-code-push/android/app")
