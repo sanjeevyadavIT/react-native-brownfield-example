@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "bundle": "react-native bundle --platform android --dev false --entry-file index.android.js --bundle-output ../app/src/main/assets/index.android.bundle --assets-dest ../app/src/main/res",
+    "codepush": "nextpush release-react -a sanjeevyadav-sharechat.co/demo -d Production -t '>=0' -g ../feature/react/build.gradle.kts",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "lint": "eslint .",
